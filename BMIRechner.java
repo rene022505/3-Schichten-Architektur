@@ -1,25 +1,34 @@
+import java.io.IOException;
+
 class BMIRechner {
-    private static double gewicht, groesse;
-    private static String name;
 
-    public static double getGewicht() {
-        return gewicht;
-    }
-    public static double getGroesse() {
-        return groesse;
-    }
-    public static String getName() {
-        return name;
+    static Person per = new Person();
+
+    public static Person createPerson(Person p) {
+        per = new Person(p.getName(), p.getGroesse(), p.getGewicht());
+        return per;
     }
 
-    public static void setGewicht(double pGewicht) {
-        gewicht = pGewicht;
+    public static Person createPerson(String name, double groesse, double gewicht) {
+        per = new Person(name, groesse, gewicht);
+        return per;
     }
-    public static void setGroesse(double pGroesse) {
-        groesse = pGroesse;
+
+    public static String calcBMI(Person p) {
+        return Double.toString(Math.round(p.getGroesse() / Math.pow(p.getGewicht(), 2)) * 100 / 100.0);
     }
-    public static void setName(String pName) {
-        name = pName;
+
+    public static boolean exists(String name, double groesse, double gewicht) {
+        return name.equals(per.getName()) && groesse == per.getGroesse() && gewicht == per.getGewicht();
+    }
+
+    public static void writter() throws IOException {
+        Datenlagerungsschicht.writeToFile(per);
+    }
+
+    public static void writter(Person p) throws IOException {
+        Datenlagerungsschicht.writeToFile(p);
+        createPerson(p);
     }
 
 }

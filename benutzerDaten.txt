@@ -1,0 +1,4 @@
+Name: test
+Größe: 60.0
+Gewicht: 1.8
+BMI: 19.0

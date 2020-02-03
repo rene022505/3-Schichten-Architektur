@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
 public class GUI extends JFrame {
@@ -52,7 +54,19 @@ public class GUI extends JFrame {
 		datenErfassenButton.setMargin(new Insets(2, 2, 2, 2));
 		datenErfassenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				JOptionPane.showMessageDialog(null, "Not yet implemented", "Error", JOptionPane.ERROR_MESSAGE);
+				if (BMIRechner.exists(nameTextFeld.getText(), Double.parseDouble(groesseTextFeld.getText()), Double.parseDouble(gewichtTextFeld.getText()))) {
+					try {
+						BMIRechner.writter();
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+					}			
+				} else {
+					try {
+						BMIRechner.writter(BMIRechner.createPerson(nameTextFeld.getText(), Double.parseDouble(groesseTextFeld.getText()), Double.parseDouble(gewichtTextFeld.getText())));
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+					}	
+				}
 			}
 		});
 		cp.add(datenErfassenButton);
@@ -61,7 +75,7 @@ public class GUI extends JFrame {
 		anzeigeAktuallisierenButton.setMargin(new Insets(2, 2, 2, 2));
 		anzeigeAktuallisierenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				
+				bmiTextFeld.setText(BMIRechner.calcBMI(BMIRechner.createPerson(nameTextFeld.getText(), Double.parseDouble(groesseTextFeld.getText()), Double.parseDouble(gewichtTextFeld.getText()))));
 			}
 		});
 		cp.add(anzeigeAktuallisierenButton);
@@ -102,25 +116,5 @@ public class GUI extends JFrame {
 
 	public static void main(String[] args) {
 		new GUI();
-	}
-
-	public void jButton1_ActionPerformed(ActionEvent evt) {
-		// TODO hier Quelltext einfügen
-
-	}
-
-	public void jButton2_ActionPerformed(ActionEvent evt) {
-		// TODO hier Quelltext einfügen
-
-	}
-
-	public void jButton3_ActionPerformed(ActionEvent evt) {
-		// TODO hier Quelltext einfügen
-
-	}
-
-	public void jButton4_ActionPerformed(ActionEvent evt) {
-		// TODO hier Quelltext einfügen
-
 	}
 }
