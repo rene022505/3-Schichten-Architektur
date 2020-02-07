@@ -31,4 +31,17 @@ class BMIRechner {
         createPerson(p);
     }
 
+    public static String[] getDataFromFile() throws IOException {
+        return Datenlagerungsschicht.readFromFile();
+    }
+
+    public static String setTextBmi(Person p) {
+        if (Double.parseDouble(calcBMI(p)) < 19.0) {
+            return "Untergewicht";
+        } else if (Double.parseDouble(calcBMI(p)) > 25.0) {
+            return "Uebergewicht";
+        } else {
+            return "Normalgewicht";
+        }
+    }
 }

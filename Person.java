@@ -18,11 +18,13 @@ class Person {
     public double getGewicht() {
         return this.gewicht;
     }
+
     public double getGroesse() {
         return this.groesse;
     }
+
     public String getName() {
         return this.name;
     }
-    
+
 }
