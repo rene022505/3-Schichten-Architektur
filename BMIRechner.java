@@ -15,7 +15,7 @@ class BMIRechner {
     }
 
     public static String calcBMI(Person p) {
-        return Double.toString(Math.round(p.getGroesse() / Math.pow(p.getGewicht(), 2)) * 100 / 100.0);
+        return Double.toString(Math.round(p.getGewicht() / Math.pow(p.getGroesse(), 2)) * 100 / 100.0);
     }
 
     public static boolean exists(String name, double groesse, double gewicht) {
